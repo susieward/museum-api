@@ -4,14 +4,6 @@ const resources = ['object', 'person', 'exhibition', 'publication', 'gallery', '
 const BASE_URL = 'https://api.harvardartmuseums.org'
 const API_KEY = '367e5892-d4fb-404d-b237-12a03a7b1640'
 
-
-function findById(id){
-
-}
-function getOptions(resource){
-  console.log('resource', resource)
-}
-
 function getExperimental(){
   const input = document.querySelector('input')
   const log = document.getElementById('log')
@@ -53,11 +45,6 @@ function getExperimental(){
     })
   }
 }
-
-function buildImageGrid(arr){
-
-}
-
 
 function search(){
   const keywordInput = document.querySelector('#keyword')
@@ -180,10 +167,6 @@ function buildColors(item){
        </div>`
     })].join('')}
     </div>`
-}
-
-function updateValue(e){
-//  log.textContent = e.target.value
 }
 
 function openImage(result){
