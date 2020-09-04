@@ -1,0 +1,57 @@
+{% extends "layout.html" %}
+{% block title %}Results{% endblock %}
+{% block head %}
+  {{ super() }}
+{% endblock %}
+{% block back %}
+  {{ super() }}
+{% endblock %}
+{% block content %}
+<span>
+  <input id="keyword" type="text" value="tech" placeholder="Search by keyword" /> <input id="size" type="number" placeholder="Results size" /> <button onclick="search()">search</button> <button onclick="getExperimental()">experimental</button>
+</span><br />
+<span>
+  {% for resource in resources %}
+  <select onchange="getOptions({{ resource }})" id="select-{{ resource }}">
+    <option value="">{{ resource }}</option>
+  </select>
+  {% endfor %}
+</span>
+<p id="log">
+
+  </p>
+ <div id="searchResults">
+
+  </div>
+ {% if data %}
+  <span>Showing results for "{{ keyword }}":</span><br />
+  <span>Page {{ data.info.page }} of {{ data.info.pages }}</span>
+ {% if data.records %}
+ <div class="results-container">
+    {% for obj in data.records %}
+   <div class="result">
+     {% if obj.id %}
+     <span>Item: <a href="/api/object/{{ obj.id }}">{{ obj.id }}</a></span>
+     {% endif %}
+     {% if obj.baseimageurl %}
+     <a href="/api/object/{{ obj.id }}">
+       <img style="width: 100%; height: auto" src="{{ obj.baseimageurl }}" />
+       </a>
+     {% endif %}
+
+     {% if obj.primaryimageurl %}
+     <a href="/api/object/{{ obj.id }}">
+       <img style="width: 100%; height: auto" src="{{ obj.primaryimageurl }}" />
+       </a>
+     {% endif %}
+     <span style="font-size: 14px; line-height: 24px">Title: {{ obj.title }}</span>
+     <span style="font-size: 14px; line-height: 24px">Description: {{ obj.description }}</span>
+  </div>
+  {% endfor %}
+  </div>
+  {% endif %}
+  {% endif %}
+{% endblock %}
+{% block script %}
+  {{ super() }}
+{% endblock %}

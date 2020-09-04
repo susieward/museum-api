@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+{% block title %}Results{% endblock %}
+{% block head %}
+  {{ super() }}
+{% endblock %}
+{% block back %}
+  {{ super() }}
+{% endblock %}
+{% block content %}
+  <span>Showing results for "{{ resource }}/{{ id }}":</span>
+ {% if data %}
+  {% if data.baseimageurl %}
+    <img style="width: 100%; height: auto" src="{{ data.baseimageurl }}" />
+  {% endif %}
+  {% if data.primaryimageurl %}
+    <img style="width: 100%; max-width: 800px; height: auto" src="{{ data.primaryimageurl }}" />
+  {% endif %}
+
+ <ul>
+     {% for key in data %}
+     <li>{{ key }}: {{ data[key] }}</li>
+     {% endfor %}
+</ul>
+  {% endif %}
+{% endblock %}

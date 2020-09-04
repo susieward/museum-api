@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+{% block title %}Results{% endblock %}
+{% block head %}
+  {{ super() }}
+{% endblock %}
+{% block resources %}
+  {{ super() }}
+{% endblock %}
+{% block content %}
+  <span>Showing results for "{{ resource }}":</span>
+  <span>Page {{ data.info.page }} of {{ data.info.pages }}</span><br />
+ {% if data %}
+ {% if data.records %}
+ <div class="results-container">
+    {% for obj in data.records %}
+   <div class="result">
+     {% if obj.id %}
+     <span>id: <a href="/find/{{ resource }}/{{ obj.id }}">{{ obj.id }}</a></span>
+     {% endif %}
+     {% if obj.baseimageurl %}
+     <a href="/find/{{ resource }}/{{ obj.id }}">
+       <img style="width: 100%; height: auto" src="{{ obj.baseimageurl }}" />
+       </a>
+     {% endif %}
+
+     {% if obj.primaryimageurl %}
+       <img style="width: 100%; height: auto" src="{{ obj.primaryimageurl }}" />
+     {% endif %}
+  {% if resource != 'image' %}
+     <ul>
+      {% for key in obj %}
+      <li style="font-size: 16px; line-height: 26px">
+        {{ key }}: {{ obj[key] }}
+      </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+  </div>
+  {% endfor %}
+  </div>
+  {% endif %}
+  {% endif %}
+{% endblock %}

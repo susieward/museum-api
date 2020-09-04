@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+{% block title %}Index{% endblock %}
+{% block head %}
+  {{ super() }}
+{% endblock %}
+{% block back %}
+  {{ super() }}
+{% endblock %}
+{% block content %}
+<div class="colors-container">
+ {% for color in colors %}
+ <div class="color">
+ <span style="font-size: 16px; letter-spacing: 0.02em">{{ color.name }}
+ </span>
+ <span style="margin: 0 auto; border: 1px solid transparent; border-radius: 50%; width: 30px; height: 30px; background-color: {{ color.hex }}"></span>
+  <span style="font-size: 14px">{{ color.hex }}</span>
+</div>
+  {% endfor %}
+  </div>
+{% endblock %}

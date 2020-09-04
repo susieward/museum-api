@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+  <head>
+    {% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+    <title>{% block title %}{% endblock %} - An App</title>
+    {% endblock %}
+  </head>
+  <body>
+    {% block resources %}
+    <div class="top">
+        {% for resource in resources %}
+        <span><a href="/list/{{ resource }}">{{ resource }}</a></span>
+        {% endfor %}
+    </div>
+    {% endblock %}
+    <div id="content">{% block content %}{% endblock %}</div>
+    <div id="footer">
+      {% block footer %}
+      {% endblock %}
+    </div>
+  </body>
+  {% block script %}
+  <script src="{{ url_for('static', filename='main.js') }}"></script>
+  {% endblock %}
+</html>
